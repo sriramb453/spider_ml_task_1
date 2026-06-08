@@ -1,0 +1,40 @@
+Bonus Task: Multi-Paper Comparison Evaluation Report
+
+This document evaluates the multi-paper comparison capability integrated directly into the unified RAG application backend (`applied_ml_domain/chatbot_code/main.py`).
+
+---
+
+1. Test Query
+User Question:"Compare the core architectures and training data sizes between the Attention Is All You Need (Transformer) paper and the LLaMA paper."
+
+---
+
+2. Retrieval Log (Context Extraction)
+The system used Max Marginal Relevance (MMR) to successfully isolate highly distinct blocks across the multi-paper database instead of pulling contiguous blocks from a single source.
+
+Identified Sources:1. `transformer.pdf` (Attention Is All You Need)
+  2. `LLAMA.pdf` (LLaMA: Open and Efficient Foundation Language Models)
+  3. `gpt3.pdf`
+  4. `LoRA.pdf`
+
+Extracted Context Snippets & Behavior:
+  The vector store successfully matched relevant structural and numerical properties across distinct files, feeding contextual blocks about standard attention mechanisms, pre-normalization settings, token counts, and efficiency parameter adaptations into the prompt context window.
+
+---
+
+3. Actual Generated Model Output
+Below is the precise response generated locally by the `llama3.2` engine via our custom backend web interface:
+
+Based on the provided context fragments, I can synthesize an answer to your question about comparing the core architectures and training data sizes between the Attention Is All You Need (Transformer) paper and the LLaMA paper.
+
+The Attention Is All You Need (Transformer) paper by Vaswani et al. (2017) introduced the Transformer architecture, which has become a standard in natural language processing tasks. The paper describes the core architecture of the Transformer, including self-attention mechanisms, position-wise feed-forward networks, and layer normalization.
+
+In contrast, the LLaMA paper does not explicitly describe its core architecture in detail. However, it mentions that it adopts most of the pretraining setting and model architecture from Llama 1 (not explicitly mentioned in the provided context fragments). The LLaMA paper also mentions that it uses a standard transformer architecture with pre-normalization using RMSNorm, SwiGLU activation function, and rotary positional embeddings.
+
+Regarding training data sizes, the Attention Is All You Need (Transformer) paper does not provide specific information on this aspect. However, the LLaMA paper mentions that all models were trained for a total of 300 billion tokens.
+
+It is worth noting that the LLaMA paper also discusses the use of LoRA (Low-Rank Adaptation) in their model, which allows for efficient adaptation of weight matrices in the self-attention module. The LoRA paper provides more information on this aspect, including the reduction in memory and storage usage.
+
+In summary, while the Attention Is All You Need (Transformer) paper does not provide specific information on training data sizes, it describes the core architecture of the Transformer. The LLaMA paper adopts a standard transformer architecture with some modifications and uses LoRA for efficient adaptation of weight matrices.
+
+Sources: gpt3.pdf, transformer.pdf, LoRA.pdf, LLAMA.pdf
